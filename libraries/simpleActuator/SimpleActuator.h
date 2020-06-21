@@ -1,6 +1,8 @@
 /*
 
-AnalogSensor.h - AnalogSensor library for Analog sensor devices
+SimpleActuator.h - SimpleActuator library for manage a digital output
+according to sensed value
+
 Copyright (c) 2020 ronnyrod.
 
 This program is free software: you can redistribute it and/or modify
@@ -17,23 +19,23 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 */
-#ifndef AnalogSensor_h
-#define AnalogSensor_h
+#ifndef SimpleActuator_h
+#define SimpleActuator_h
 
 #include "Arduino.h"
 
-typedef void (* callbackFunc)(int);
-
-class AnalogSensor
+class SimpleActuator
 {
 private:
     int pin;
-    int value;
+    int minValue = 0;
+    int maxValue = 1023;
+    bool inRangeValue = true;
 public:
-    AnalogSensor(int);
-    int lastValue(void);
-    int read(void);
-    void control(callbackFunc);
-    ~AnalogSensor();
+    SimpleActuator(int, int, int, bool);
+    void init();
+    void control(int);
+    int status();    
+    ~SimpleActuator();
 };
 #endif

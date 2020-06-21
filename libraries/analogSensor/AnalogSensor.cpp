@@ -35,29 +35,13 @@ int AnalogSensor::read(void) {
     return value;
 }
 /**
- * Checks if value is not out of range
- * @return control int as follow:
- *          0: if value is in range
- *         -1: value is under defined min value
- *          1: value over defined max value
- */
-int AnalogSensor::inRange(void) {
-    int out = 0;
-    if(value<minValue) {
-        out = -1;
-    } else if (value>maxValue) {
-        out = 1;
-    }
-    return out;
-}
-/**
  * Executes a callback function after read sensor value
  **/
 void AnalogSensor::control(callbackFunc callback) {
     //Read sensor
     read();
     //Executes callback control function 
-    callback(inRange(),lastValue());    
+    callback(lastValue());    
 }
 /**
  * Last read value from analog pin
@@ -67,17 +51,7 @@ int AnalogSensor::lastValue(void) {
     return value;
 }
 /**
- * Defines range for read value
- * @param min - Minimun limit for read value
- * @param max - Maximun limit for read value
- */
-void AnalogSensor::range(int min, int max) {
-    minValue = min;
-    maxValue = max;
-}
-/**
  * Destructor
  */
-AnalogSensor::~AnalogSensor() {
-    
+AnalogSensor::~AnalogSensor() {   
 }
