@@ -35,9 +35,9 @@ DayLightController::DayLightController(bool _initialSunny, byte _maxDayLightHour
  * @param onSunSet - Callback executes when sunny state finishes
  **/
 void DayLightController::update(void(*onSunRise)(void),void(*onSunSet)(void)) {
-    unsigned long  delta = millis() -lastTimeRead;
-    nDays = (byte) (delta / MIL_PER_DAY);
-    nHours  = (byte)((delta - nDays * MIL_PER_DAY) / MIL_PER_HOUR);    
+    unsigned long  currTime = millis();
+    nDays = (byte) ((float)currTime / MIL_PER_DAY);
+    nHours  = (byte)((float)(currTime - nDays * MIL_PER_DAY) / MIL_PER_HOUR);    
     if(sunny) {
         if(nHours>maxDayLightHours) {
             sunny = false;
@@ -49,7 +49,6 @@ void DayLightController::update(void(*onSunRise)(void),void(*onSunSet)(void)) {
             onSunRise();
         }
     }
-    lastTimeRead = millis();
 }
 bool DayLightController::isSunny() {
     return sunny;

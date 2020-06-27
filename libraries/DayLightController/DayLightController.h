@@ -34,7 +34,6 @@ class DayLightController {
 private:
     bool sunny = true;
     byte maxDayLightHours = DEF_DAY_LIGHT_HOURS;
-    unsigned long lastTimeRead = 0;
     byte nHours = 0;
     byte nDays = 0;
 public:
