@@ -39,12 +39,12 @@ void DayLightController::update(void(*onSunRise)(void),void(*onSunSet)(void)) {
     nDays = (byte) ((float)currTime / MIL_PER_DAY);
     nHours  = (byte)((float)(currTime - nDays * MIL_PER_DAY) / MIL_PER_HOUR);    
     if(sunny) {
-        if(nHours>maxDayLightHours) {
+        if(nHours>=maxDayLightHours) {
             sunny = false;
             onSunSet();            
         }
     } else {
-        if(nHours > (DAY_HOURS-maxDayLightHours)) {
+        if(nHours <= 0) {
             sunny = true;
             onSunRise();
         }

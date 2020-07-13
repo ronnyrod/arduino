@@ -26,8 +26,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "Arduino.h"
 
 #define DAY_HOURS 24
-#define MIL_PER_DAY 86400000
+#define SEC_PER_MINUTE 60
+#define MIN_PER_HOUR 60
+#define MIL_PER_SECOND 1000
+#define MIL_PER_MINUTE 60000
 #define MIL_PER_HOUR 3600000
+#define MIL_PER_DAY 86400000
+
 #define DEF_DAY_LIGHT_HOURS 8
 
 class DayLightController {
